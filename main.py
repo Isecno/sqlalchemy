@@ -39,7 +39,7 @@ def reqister():
             name=form.name.data,
             surname=form.surname.data,
             email=form.email.data,
-            age=form.about.data,
+            age=form.age.data,
             position=form.position.data,
             speciality=form.speciality.data,
             address=form.address.data
@@ -83,19 +83,19 @@ def index():
 @app.route('/addjob', methods=['GET', 'POST'])
 @login_required
 def addjob():
-    form = Jobs()
+    form = JobsForm()
     if form.validate_on_submit():
         db_sess = db_session.create_session()
-        job = JobsForm()
+        job = Jobs()
         job.job = form.job.data
         job.team_leader = form.leader.data
         job.work_size = form.work_size.data
         job.collaborators = form.collaborators.data
-        job.is_finished = form.is_finished.data
+        job.is_finished = form.is_finish.data
         db_sess.add(job)
         db_sess.commit()
         return redirect("/")
-    return render_template('addjob.html', title='Добавелние работы', form=form)
+    return render_template('addjob.html', job='Добавление работы', form=form)
 
 
 def main():
