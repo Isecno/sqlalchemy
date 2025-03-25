@@ -95,7 +95,7 @@ def addjob():
         db_sess.add(job)
         db_sess.commit()
         return redirect("/")
-    return render_template('addjob.html', job='Добавление работы', form=form)
+    return render_template('addjob.html', title='Добавление работы', form=form)
 
 
 def main():
